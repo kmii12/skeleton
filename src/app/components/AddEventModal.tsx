@@ -109,8 +109,10 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
         // endTime: isAllday ? null : endTime,
         startTime,
         endTime,
-        startDate: isAllday ? null : startDate,
-        endDate: isAllday ? null : endDate,
+        // startDate: isAllday ? null : startDate,
+        // endDate: isAllday ? null : endDate,
+        startDate,
+        endDate,
         memo,
         date: new Date().toISOString().split("T")[0], // 現在の日付を保存
       });
