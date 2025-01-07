@@ -45,7 +45,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
         startDate: isAllday ? null : startDate,
         endDate: isAllday ? null : endDate,
         memo,
-        date: new Date().toISOString().split("T")[0], // 現在の日付を保存
+        // date: new Date().toISOString().split("T")[0], // 現在の日付を保存
       });
       setShowModal(false); // モーダル閉じる
       alert("予定が追加されました！");

@@ -270,7 +270,6 @@ const MainCalender: React.FC = () => {
     //     }
     //     return { ...dateInfo, events: [] };
     //   });
-
     //   setDates(updateDates);
     // };
     // fetchAndSetEvents();

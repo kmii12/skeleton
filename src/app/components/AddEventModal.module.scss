@@ -64,5 +64,15 @@
     .ttlWrap {
       all: unset;
     }
+
+    .isNotAlldayWContainer {
+      display: flex;
+      flex-direction: column;
+      input {
+        background-color: gray;
+        font-size: 1.6em;
+        color: $font_color;
+      }
+    }
   }
 }
