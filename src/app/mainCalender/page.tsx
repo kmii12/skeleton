@@ -394,27 +394,6 @@ const MainCalender: React.FC = () => {
                           <p>{event.title}</p>
                         </div>
                       ))}
-                  {/* 空き時間を表示 */}
-                  {date && (
-                    <div className={styles.freeSlotsContainer}>
-                      {GetFreeTime(
-                        events.filter(
-                          (event) =>
-                            event.date ===
-                            `${currentYear}-${String(currentMonth).padStart(
-                              2,
-                              "0"
-                            )}-${String(date).padStart(2, "0")}`
-                        )
-                      ).map((slot, index) => (
-                        <div key={index} className={styles.freeSlot}>
-                          <p>
-                            {slot.start} - {slot.end}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </section>
               </div>
             );

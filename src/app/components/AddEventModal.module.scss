@@ -6,6 +6,7 @@
   padding: 0;
   width: 100vw;
   height: 90vh;
+  position: fixed;
   button,
   input,
   label,
@@ -38,6 +39,9 @@
   }
 
   main {
+    h3 {
+      font-size: 1.6em;
+    }
     padding: 26px 19px;
     display: flex;
     flex-direction: column;
@@ -63,6 +67,31 @@
     }
     .ttlWrap {
       all: unset;
+    }
+
+    .isNotAlldayWContainer {
+      display: flex;
+      flex-direction: column;
+      input {
+        font-size: 1.6rem;
+        padding: 4px;
+      }
+    }
+    .modalContent {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dateTimePicker {
+      margin-bottom: 20px;
+      width: 100%;
+      font-size: 1.6em;
+    }
+
+    .pickerRow {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
     }
   }
 }
