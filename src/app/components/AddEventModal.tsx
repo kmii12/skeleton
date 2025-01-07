@@ -19,12 +19,15 @@ interface AddEventModalProps {
 }
 
 const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
-  const [eventTtl, setEventTtl] = useState<string>(""); //予定のタイトル
+  const [title, setTitle] = useState<string>(""); //予定のタイトル
   const [isAllday, setIsAllday] = useState<boolean>(false); //終日かどうか
-  const [startDate, setStartDate] = useState<string | null>(null); // 開始日時
-  const [endDate, setEndDate] = useState<string | null>(null); // 終了日時
-  const [startTime, setStartTime] = useState<string | null>(null); // 開始時間
-  const [endTime, setEndTime] = useState<string | null>(null); // 終了時間
+  // const [startDate, setStartDate] = useState<string | null>(null); // 開始日時
+  // const [endDate, setEndDate] = useState<string | null>(null); // 終了日時
+  // const [startTime, setStartTime] = useState<string | null>(null); // 開始時間
+  // const [endTime, setEndTime] = useState<string | null>(null); // 終了時間
+  const [startDateTime, setStartDateTime] = useState<string | null>(null); // 開始日時
+  const [endDateTime, setEndDateTime] = useState<string | null>(null); // 終了日時
+  const [date, setDate] = useState<string | null>(null);
 
   const [eventColor, setEventColor] = useState<string>("red"); // 予定のカラー
   const [memo, setMemo] = useState<string>(""); // メモ
@@ -32,19 +35,27 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
 
   // 予定をfirestoreに追加する関数
   const addEvent = async (e: React.FormEvent) => {
-    if (!eventTtl) return; // タイトルが入力されていない場合は保存しない
+    if (!title) return; // タイトルが入力されていない場合は保存しない
+
+    //startDateTime (形式：YYYY-MM-DD T HH:mm)になってるからTの前が日付、後ろが時間で分ける
+    const startDate = startDateTime ? startDateTime.split("T")[0] : null;
+    const startTime = startDateTime ? startDateTime.split("T")[1] : null;
+
+    const endDate = endDateTime ? endDateTime.split("T")[0] : null;
+    const endTime = endDateTime ? endDateTime.split("T")[1] : null;
 
     e.preventDefault();
     try {
       const eventRef = collection(db, "events"); // Firestoreの'events'コレクション
       await addDoc(eventRef, {
-        eventTtl,
+        title,
         isAllday,
-        startTime: isAllday ? null : startTime, // 終日設定の場合nullにする
-        endTime: isAllday ? null : endTime,
-        startDate: isAllday ? null : startDate,
-        endDate: isAllday ? null : endDate,
+        startTime, // 終日設定の場合nullにする
+        endTime,
+        startDate,
+        endDate,
         memo,
+        date: startDate,
         // date: new Date().toISOString().split("T")[0], // 現在の日付を保存
       });
       setShowModal(false); // モーダル閉じる
@@ -117,8 +128,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
                 className={styles.ttlWrap}
                 type="text"
                 placeholder="Event Title"
-                value={eventTtl}
-                onChange={(e) => setEventTtl(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 required
               />
               <button className={styles.ttlDeleteBtn}>
@@ -145,16 +156,16 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
                 <input
                   className={styles.startDateWrap}
                   type="datetime-local"
-                  value={startDate || ""}
-                  onChange={(e) => setStartDate(e.target.value)}
+                  value={startDateTime || ""}
+                  onChange={(e) => setStartDateTime(e.target.value)}
                   required
                 />
                 ～
                 <input
                   className={styles.endDateWrap}
                   type="datetime-local"
-                  value={endDate || ""}
-                  onChange={(e) => setEndDate(e.target.value)}
+                  value={endDateTime || ""}
+                  onChange={(e) => setEndDateTime(e.target.value)}
                   required
                 />
               </div>
