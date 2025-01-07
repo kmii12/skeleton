@@ -10,6 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./header.module.scss"; // モジュール化スタイルをインポート
 
+import handlePrevMonth from "../page";
+import handleNextMonth from "../page";
+
 const Header = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
@@ -89,6 +92,9 @@ const Header = () => {
           <FontAwesomeIcon icon={faBars} />
         </button>
       </div>
+      {/* <button className={styles.nextButton} onClick={handleNextMonth}>
+        次の月
+      </button> */}
     </header>
   );
 };

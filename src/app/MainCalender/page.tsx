@@ -53,7 +53,7 @@ const MainCalender: React.FC = () => {
   };
 
   //今月の日付を作成
-  const generateDates = (year: number, month: number, day: number) => {
+  const generateDates = (year: number, month: number) => {
     const daysInMonth = getDaysInMonth(year, month - 1);
     //月の初日が何曜日か
     const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
@@ -62,6 +62,12 @@ const MainCalender: React.FC = () => {
     //今日の日にち（dateのみ）取得
     const todayDate = today.date;
     console.log("今日は", todayDate, "日です");
+    //今日の年（yearのみ）取得
+    const todayYear = today.year;
+    console.log("今日は", todayYear, "年です");
+    //今日の月（monthのみ）取得
+    const todayMonth = today.month;
+    console.log("今日は", todayMonth, "月です");
     //yearの値が一致し、かつmonthも一致する
     const isThisMonth = year === today.year && month === today.month;
     // console.log(isThisMonth);
@@ -73,6 +79,25 @@ const MainCalender: React.FC = () => {
       isSunday: boolean;
       isToday: boolean;
     }> = [];
+
+    //前月へ
+    const handlePrevMonth = () => {
+      if (currentMonth === 1) {
+        setCurrentYear(currentYear - 1);
+        setCurrentMonth(12);
+      } else {
+        setCurrentMonth(currentMonth - 1);
+      }
+    };
+
+    const handleNextMonth = () => {
+      if (currentMonth === 12) {
+        setCurrentYear(currentYear + 1);
+        setCurrentMonth(1);
+      } else {
+        setCurrentMonth(currentMonth + 1);
+      }
+    };
 
     //firstDayOfMonthで取得した、月の初日の曜日より前の部分を空白にする
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -87,18 +112,21 @@ const MainCalender: React.FC = () => {
 
     //実際の日付を挿入すると同時に、土日の取得と土曜日曜それぞれの取得
     for (let i = 1; i <= daysInMonth; i++) {
-      const dayOfWeek = new Date(year, month, i).getDay();
+      const dayOfWeek = new Date(year, month - 1, i).getDay();
+      console.log(dayOfWeek);
 
       const weekEnd = dayOfWeek === 0 || dayOfWeek === 6;
-      const isSaturday = dayOfWeek === 1;
-      // console.log(isSaturday);
+      const isSaturday = dayOfWeek === 6;
 
-      const isSunday = dayOfWeek === 2;
+      const isSunday = dayOfWeek === 0;
       //今日の日(todayDate)とisThisMonthがtrue
       const isToday = isThisMonth && i === todayDate;
       dates.push({ date: i, weekEnd, isSaturday, isSunday, isToday });
-      // console.log(weekEnd); //ちゃんととれてる！
-      // console.log(i, "土曜日？", isSaturday); //ちゃんととれてる！
+
+      console.log(
+        `日付: ${i}, 曜日: ${dayOfWeek}, 土曜: ${isSaturday}, 日曜: ${isSunday}, 週末: ${weekEnd}`
+      );
+      console.log(`Year: ${year}, Month: ${month}, Day: ${i}`);
     }
 
     return dates;
