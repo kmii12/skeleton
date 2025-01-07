@@ -15,8 +15,14 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { easeIn, easeInOut, motion } from "framer-motion";
 
 //react-date-picker
-import DatePicker from "react-date-picker";
-import TimePicker from "react-time-picker";
+// import DatePicker from "react-date-picker";
+// import TimePicker from "react-time-picker";
+
+//mui
+import { TextField } from "@mui/material";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 // // スクロールで時間を変更するカスタムコンポーネント
 // const TimeInputWithScroll = ({
@@ -86,8 +92,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
   // const [startTime, setStartTime] = useState<string>("00:00"); // 開始時間
   // const [endTime, setEndTime] = useState<string>("12:00"); // 終了時間
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(new Date());
   const [startTime, setStartTime] = useState("00:00"); // 開始時間
   const [endTime, setEndTime] = useState("00:00"); // 終了時間
 
@@ -247,37 +253,26 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
               </div>
             )} */}
 
-            <div className={styles.dateTimePicker}>
-              <label>開始日時</label>
-              <div className={styles.pickerRow}>
-                <DatePicker
-                  onChange={setStartDate}
-                  value={startDate}
-                  clearIcon={null}
-                />
-                <TimePicker
-                  onChange={setStartTime}
-                  value={startTime}
-                  clearIcon={null}
-                  clockIcon={null}
-                />
+            {!isAllday && (
+              <div className={styles.dateTimePicker}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <label>開始日時</label>
+                  <DateTimePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    value={startDate}
+                    onChange={setStartDate}
+                    disablePast
+                  />
+                  <label>終了日時</label>
+                  <DateTimePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    value={endDate}
+                    onChange={setEndDate}
+                    disablePast
+                  />
+                </LocalizationProvider>
               </div>
-
-              <label>終了日時</label>
-              <div className={styles.pickerRow}>
-                <DatePicker
-                  onChange={setEndDate}
-                  value={endDate}
-                  clearIcon={null}
-                />
-                <TimePicker
-                  onChange={setEndTime}
-                  value={endTime}
-                  clearIcon={null}
-                  clockIcon={null}
-                />
-              </div>
-            </div>
+            )}
 
             {/* 履歴 */}
             <input
