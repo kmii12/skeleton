@@ -18,75 +18,17 @@ import { easeIn, easeInOut, motion } from "framer-motion";
 // import DatePicker from "react-date-picker";
 // import TimePicker from "react-time-picker";
 
-// スクロールで時間を変更するカスタムコンポーネント
-const TimeInputWithScroll = ({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: (value: string) => void;
-}) => {
-  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
-    const isUp = e.deltaY < 0; // スクロールアップなら時間を増やす
-    const [hours, minutes] = value.split(":").map(Number);
-    let newMinutes = minutes;
-    let newHours = hours;
-
-    if (isUp) {
-      newMinutes += 30; // 30分単位で増加
-      if (newMinutes >= 60) {
-        newMinutes = 0;
-      }
-
-      newHours += 1; // 1時間単位で増加
-      if (newHours >= 24) {
-        newHours = 0;
-      }
-    } else {
-      newMinutes -= 30; // 30分単位で減少
-      if (newMinutes < 0) {
-        newMinutes = 30;
-      }
-
-      newHours -= 1; // 1時間単位で減少
-      if (newHours < 0) {
-        newHours = 0;
-      }
-    }
-
-    const newTime = `${String(newHours).padStart(2, "0")}:${String(
-      newMinutes
-    ).padStart(2, "0")}`;
-    onChange(newTime);
-  };
-
-  return (
-    <input
-      className={styles.timeInput}
-      type="text"
-      value={value}
-      onWheel={handleWheel}
-      readOnly
-    />
-  );
-};
-
 interface AddEventModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
   const [title, setTitle] = useState<string>(""); //予定のタイトル
-  const [title, setTitle] = useState<string>(""); //予定のタイトル
   const [isAllday, setIsAllday] = useState<boolean>(false); //終日かどうか
-
-  //一個前のやつ
-  // // const [startDate, setStartDate] = useState<string | null>(null); // 開始日時
-  // // const [endDate, setEndDate] = useState<string | null>(null); // 終了日時
-  // const now = new Date().toISOString().slice(0, 16);
-  // // const [startTime, setStartTime] = useState<string>("00:00"); // 開始時間
-  // // const [endTime, setEndTime] = useState<string>("12:00"); // 終了時間
-
+  // const [startDate, setStartDate] = useState<string | null>(null); // 開始日時
+  // const [endDate, setEndDate] = useState<string | null>(null); // 終了日時
+  // const [startTime, setStartTime] = useState<string | null>(null); // 開始時間
+  // const [endTime, setEndTime] = useState<string | null>(null); // 終了時間
   const [startDateTime, setStartDateTime] = useState<string | null>(null); // 開始日時
   const [endDateTime, setEndDateTime] = useState<string | null>(null); // 終了日時
   const [date, setDate] = useState<string | null>(null);
@@ -111,14 +53,9 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
       const eventRef = collection(db, "events"); // Firestoreの'events'コレクション
       await addDoc(eventRef, {
         title,
-        title,
         isAllday,
-        // startTime, // 終日設定の場合nullにする
-        // endTime,
         startTime,
         endTime,
-        // startDate,
-        // endDate,
         startDate,
         endDate,
         memo,
@@ -260,14 +197,20 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
 
             {!isAllday && (
               <div className={styles.isNotAlldayWContainer}>
-                <TimeInputWithScroll
-                  value={startTime}
-                  onChange={(newTime) => setStartTime(newTime)}
+                <input
+                  className={styles.startDateWrap}
+                  type="datetime-local"
+                  value={startDateTime || ""}
+                  onChange={(e) => setStartDateTime(e.target.value)}
+                  required
                 />
-
-                <TimeInputWithScroll
-                  value={endTime}
-                  onChange={(newTime) => setEndTime(newTime)}
+                ～
+                <input
+                  className={styles.endDateWrap}
+                  type="datetime-local"
+                  value={endDateTime || ""}
+                  onChange={(e) => setEndDateTime(e.target.value)}
+                  required
                 />
               </div>
             )}

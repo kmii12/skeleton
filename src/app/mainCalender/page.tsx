@@ -81,23 +81,23 @@ const MainCalender: React.FC = () => {
     }> = [];
 
     //前月へ
-    const handlePrevMonth = () => {
-      if (currentMonth === 1) {
-        setCurrentYear(currentYear - 1);
-        setCurrentMonth(12);
-      } else {
-        setCurrentMonth(currentMonth - 1);
-      }
-    };
+    // const handlePrevMonth = () => {
+    //   if (currentMonth === 1) {
+    //     setCurrentYear(currentYear - 1);
+    //     setCurrentMonth(12);
+    //   } else {
+    //     setCurrentMonth(currentMonth - 1);
+    //   }
+    // };
 
-    const handleNextMonth = () => {
-      if (currentMonth === 12) {
-        setCurrentYear(currentYear + 1);
-        setCurrentMonth(1);
-      } else {
-        setCurrentMonth(currentMonth + 1);
-      }
-    };
+    // const handleNextMonth = () => {
+    //   if (currentMonth === 12) {
+    //     setCurrentYear(currentYear + 1);
+    //     setCurrentMonth(1);
+    //   } else {
+    //     setCurrentMonth(currentMonth + 1);
+    //   }
+    // };
 
     //firstDayOfMonthで取得した、月の初日の曜日より前の部分を空白にする
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -113,7 +113,7 @@ const MainCalender: React.FC = () => {
     //実際の日付を挿入すると同時に、土日の取得と土曜日曜それぞれの取得
     for (let i = 1; i <= daysInMonth; i++) {
       const dayOfWeek = new Date(year, month - 1, i).getDay();
-      console.log(dayOfWeek);
+      // console.log(dayOfWeek);
 
       const weekEnd = dayOfWeek === 0 || dayOfWeek === 6;
       const isSaturday = dayOfWeek === 6;
@@ -123,10 +123,10 @@ const MainCalender: React.FC = () => {
       const isToday = isThisMonth && i === todayDate;
       dates.push({ date: i, weekEnd, isSaturday, isSunday, isToday });
 
-      console.log(
-        `日付: ${i}, 曜日: ${dayOfWeek}, 土曜: ${isSaturday}, 日曜: ${isSunday}, 週末: ${weekEnd}`
-      );
-      console.log(`Year: ${year}, Month: ${month}, Day: ${i}`);
+      // console.log(
+      //   `日付: ${i}, 曜日: ${dayOfWeek}, 土曜: ${isSaturday}, 日曜: ${isSunday}, 週末: ${weekEnd}`
+      // );
+      // console.log(`Year: ${year}, Month: ${month}, Day: ${i}`);
     }
 
     return dates;
@@ -303,7 +303,7 @@ const MainCalender: React.FC = () => {
 
   // const dates = generateDates(currentYear, currentMonth);
 
-  // 月名リスト
+  // 月リスト
   const monthNames = [
     "1月",
     "2月",

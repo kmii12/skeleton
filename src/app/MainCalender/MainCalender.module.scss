@@ -50,20 +50,20 @@
         flex-direction: column;
         gap: 2px;
         .eventContainer {
-          width: 49px;
+          width: 100%;
           height: 16px;
           padding-left: 2px;
           font-weight: bold;
-          background: $bg_event;
+          background: black;
           border-radius: 2px;
-          border: 0.5px solid $sub;
-          color: $sub;
+          // border: 0.5px solid $sub;
+          color: white;
 
           overflow: hidden;
         }
       }
       &.selected {
-        border: 1px solid $accent;
+        border: 1px solid gray;
       }
     }
 
@@ -74,7 +74,7 @@
       color: $sunday_color;
     }
     .isToday {
-      background-color: $accent;
+      background-color: darkgray;
       color: $base;
     }
 

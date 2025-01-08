@@ -1,7 +1,7 @@
 @import "../styles/color.scss";
 
 .modal {
-  background-color: $base;
+  background-color: black;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -20,9 +20,9 @@
 
   header {
     display: flex;
-    background-color: $main;
+    background-color: lightgray;
     justify-content: space-between;
-    color: $base;
+    color: black;
     align-items: center;
     padding: 14px 17px;
     border-radius: 20px 20px 0% 0%;
@@ -54,9 +54,9 @@
       }
       .regularBtn {
         font-size: 1.4em;
-        color: $sub;
+        color: black;
         // background-color: ;
-        border: 0.5px solid $sub;
+        border: 0.5px solid black;
         border-radius: 4px;
         display: flex;
         justify-content: center;
@@ -73,9 +73,9 @@
       display: flex;
       flex-direction: column;
       input {
-        background-color: gray;
+        background-color: black;
         font-size: 1.6em;
-        color: $font_color;
+        color: white;
       }
     }
   }

@@ -19,7 +19,7 @@
     width: 100%;
     height: 100%;
     header {
-      background-color: $main;
+      background-color: black;
       color: $base;
       padding: 4px 16px;
       display: flex;
@@ -39,7 +39,7 @@
         .colorLabel {
           width: 6px;
           height: 30px;
-          background-color: $category_work;
+          background-color: gray;
           border-radius: 2px;
         }
         .timeContainer {
