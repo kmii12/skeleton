@@ -34,7 +34,7 @@ const MainCalender: React.FC = () => {
       month: Number(parts.find((part) => part.type === "month")?.value),
       date: Number(parts.find((part) => part.type === "day")?.value),
     };
-    console.log("今日の日付は", today);
+    // console.log("今日の日付は", today);
 
     return today;
   };
