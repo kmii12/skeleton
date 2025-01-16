@@ -3,20 +3,20 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #FDFDFE;
+  background-color: #fdfdfe;
   color: white;
+  box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 
-  
   &__button {
     background: none;
     border: none;
-    color: #BEB1E6;
+    color: #beb1e6;
     font-size: 24px;
     cursor: pointer;
     transition: color 0.3s;
-    
+
     &.active {
-      color: #683EFF; // Active button color
+      color: #683eff; // Active button color
     }
 
     // &:hover {
@@ -25,8 +25,8 @@
   }
 
   &__buttonsMiddle {
-    display: flex;            // フレックスコンテナを指定
-    gap: 20px;                // ボタン間に20pxの隙間を指定
-    justify-content: center;  // 中央揃え
+    display: flex; // フレックスコンテナを指定
+    gap: 20px; // ボタン間に20pxの隙間を指定
+    justify-content: center; // 中央揃え
   }
 }
