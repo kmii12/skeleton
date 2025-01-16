@@ -13,6 +13,7 @@ import AddEventButton from "../components/AddEventButton";
 import SelectedDateModal from "../components/SelectedDateModal";
 import GetFreeTime from "../components/freeTime";
 import Header from "../components/header";
+import Futter from "../components/Futter";
 
 //?
 import { type } from "os";
@@ -510,7 +511,7 @@ const MainCalender: React.FC = () => {
           events={events.filter((event) => event.date === selectedDate)}
         />
       )}
-
+      <Futter></Futter>
       <AddEventButton />
     </>
   );
