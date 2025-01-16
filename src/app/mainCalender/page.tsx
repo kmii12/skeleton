@@ -542,6 +542,7 @@ const MainCalender: React.FC = () => {
           // events={events.filter((event) => event.date === selectedDate)}
         />
       )}
+      <div className={styles.footerTopWrap}></div>
       <Futter></Futter>
       <AddEventButton />
     </>
