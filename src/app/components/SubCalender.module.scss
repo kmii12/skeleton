@@ -62,15 +62,14 @@
           height: 16px;
           padding-left: 2px;
           font-weight: bold;
-          background: $bg_event;
           border-radius: 2px;
-          border: 0.5px solid $sub;
-          color: $sub;
+
+          color: $base;
 
           overflow: hidden;
         }
         .freeSlotTxt {
-          padding: 1px 0;
+          padding: 2px 0 0 0.8px;
         }
         // .freeSlotContainer {
         //   width: 49px;
@@ -87,25 +86,25 @@
         .block_one {
           width: 49px;
           height: 16px;
-          padding-left: 1px;
+          padding-left: 2px;
           font-weight: bold;
           background-image: url(../../../public/block_sub.png);
           background-repeat: no-repeat;
           border-radius: 2px;
-          color: $base;
+          color: $main;
 
           overflow: hidden;
         }
         .block_two {
           width: 49px;
           height: 16px;
-          padding-left: 1px;
+          padding-left: 2px;
           font-weight: bold;
           background-image: url(../../../public/block_sub_two.png);
           background-repeat: no-repeat;
 
           border-radius: 2px;
-          color: $base;
+          color: $main;
 
           overflow: hidden;
         }
@@ -115,10 +114,10 @@
           height: 16px;
           background-image: url(../../../public/block_sub_three.png);
           background-size: contain;
-          padding-left: 1px;
+          padding-left: 1.7px;
           font-weight: bold;
           border-radius: 2px;
-          color: $base;
+          color: $main;
 
           overflow: hidden;
         }
@@ -128,10 +127,12 @@
           height: 16px;
           padding-left: 2px;
           font-weight: bold;
-          background: $base;
+          // background: $base;
+          background-image: url(../../../public/block_sub_stick.png);
+          background-size: contain;
           border-radius: 2px;
           color: $main;
-          border: solid 1px $main;
+          // border: solid 0.2px $main;
 
           overflow: hidden;
         }

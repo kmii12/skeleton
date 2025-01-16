@@ -433,6 +433,7 @@ const SubCalender: React.FC = () => {
                           end: slot.end,
                           className: slot.className,
                           id: `free-${index}`, // ユニークなIDを生成
+                          color: slot.color,
                         }));
 
                       // 予定と空き時間を統合してソート
@@ -449,6 +450,11 @@ const SubCalender: React.FC = () => {
                             slot.type === "event"
                               ? styles.eventContainer
                               : styles[slot.className]
+                          }
+                          style={
+                            slot.type === "event"
+                              ? { backgroundColor: slot.color }
+                              : {}
                           }
                         >
                           {slot.type === "event" ? (
