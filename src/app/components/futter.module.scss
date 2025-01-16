@@ -1,3 +1,5 @@
+@import "../styles/color.scss";
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -16,7 +18,10 @@
     transition: color 0.3s;
 
     &.active {
-      color: #683eff; // Active button color
+      color: $main;
+    }
+    &:hover.active {
+      color: $main;
     }
 
     // &:hover {

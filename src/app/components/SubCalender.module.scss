@@ -87,9 +87,9 @@
         .block_one {
           width: 49px;
           height: 16px;
-          padding-left: 2px;
+          padding-left: 1px;
           font-weight: bold;
-          background-image: url(../../../public/block_one.png);
+          background-image: url(../../../public/block_sub.png);
           background-repeat: no-repeat;
           border-radius: 2px;
           color: $base;
@@ -99,9 +99,9 @@
         .block_two {
           width: 49px;
           height: 16px;
-          padding-left: 2px;
+          padding-left: 1px;
           font-weight: bold;
-          background-image: url(../../../public/block_two.png);
+          background-image: url(../../../public/block_sub_two.png);
           background-repeat: no-repeat;
 
           border-radius: 2px;
@@ -113,10 +113,10 @@
         .block_three {
           width: 49px;
           height: 16px;
-          background-image: url(../../../public/block_three.png);
-          padding-left: 2px;
+          background-image: url(../../../public/block_sub_three.png);
+          background-size: contain;
+          padding-left: 1px;
           font-weight: bold;
-          // background: $accent;
           border-radius: 2px;
           color: $base;
 
@@ -128,9 +128,10 @@
           height: 16px;
           padding-left: 2px;
           font-weight: bold;
-          background: $accent;
+          background: $base;
           border-radius: 2px;
-          color: $base;
+          color: $main;
+          border: solid 1px $main;
 
           overflow: hidden;
         }

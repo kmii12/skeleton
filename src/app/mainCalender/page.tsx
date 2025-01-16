@@ -35,7 +35,7 @@ const MainCalender: React.FC = () => {
       month: Number(parts.find((part) => part.type === "month")?.value),
       date: Number(parts.find((part) => part.type === "day")?.value),
     };
-    console.log("今日の日付は", today);
+    // console.log("今日の日付は", today);
 
     return today;
   };
@@ -58,17 +58,17 @@ const MainCalender: React.FC = () => {
     const daysInMonth = getDaysInMonth(year, month - 1);
     //月の初日が何曜日か
     const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
-    console.log("今月は", firstDayOfMonth, "から始まる");
+    // console.log("今月は", firstDayOfMonth, "から始まる");
 
     //今日の日にち（dateのみ）取得
     const todayDate = today.date;
-    console.log("今日は", todayDate, "日です");
+    // console.log("今日は", todayDate, "日です");
     //今日の年（yearのみ）取得
     const todayYear = today.year;
-    console.log("今日は", todayYear, "年です");
+    // console.log("今日は", todayYear, "年です");
     //今日の月（monthのみ）取得
     const todayMonth = today.month;
-    console.log("今日は", todayMonth, "月です");
+    // console.log("今日は", todayMonth, "月です");
     //yearの値が一致し、かつmonthも一致する
     const isThisMonth = year === today.year && month === today.month;
     // console.log(isThisMonth);
@@ -114,7 +114,7 @@ const MainCalender: React.FC = () => {
     //実際の日付を挿入すると同時に、土日の取得と土曜日曜それぞれの取得
     for (let i = 1; i <= daysInMonth; i++) {
       const dayOfWeek = new Date(year, month - 1, i).getDay();
-      console.log(dayOfWeek);
+      // console.log(dayOfWeek);
 
       const weekEnd = dayOfWeek === 0 || dayOfWeek === 6;
       const isSaturday = dayOfWeek === 6;
@@ -124,10 +124,10 @@ const MainCalender: React.FC = () => {
       const isToday = isThisMonth && i === todayDate;
       dates.push({ date: i, weekEnd, isSaturday, isSunday, isToday });
 
-      console.log(
-        `日付: ${i}, 曜日: ${dayOfWeek}, 土曜: ${isSaturday}, 日曜: ${isSunday}, 週末: ${weekEnd}`
-      );
-      console.log(`Year: ${year}, Month: ${month}, Day: ${i}`);
+      // console.log(
+      //   `日付: ${i}, 曜日: ${dayOfWeek}, 土曜: ${isSaturday}, 日曜: ${isSunday}, 週末: ${weekEnd}`
+      // );
+      // console.log(`Year: ${year}, Month: ${month}, Day: ${i}`);
     }
 
     return dates;
@@ -149,45 +149,12 @@ const MainCalender: React.FC = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log("取得した予定データ", fetchEvents);
+      // console.log("取得した予定データ", fetchEvents);
 
       setEvents(fetchEvents);
     } catch (error) {
       console.error("予定データ取得失敗", error);
     }
-    // //firestoreのクエリ
-    // const q = query(
-    //   collection(db, "events"),
-    //   where("date", ">=", startDate),
-    //   where("date", "<=", endDate)
-    // );
-
-    //データ取得
-    // const querySnapshot = await getDocs(q);
-    // const events: {
-    //   [key: string]: Array<{
-    //     id: string;
-    //     title: string;
-    //     startTime: string;
-    //     endTime: string;
-    //   }>;
-    // } = {};
-
-    // querySnapshot.forEach((doc) => {
-    //   const data = doc.data();
-    //   console.log(data);
-    //   const date = data.date; //"YYYY-MM-DD"
-    //   if (!events[date]) {
-    //     events[date] = [];
-    //   }
-    //   events[date].push({
-    //     id: doc.id,
-    //     title: data.title,
-    //     startTime: data.startTime,
-    //     endTime: data.endTime,
-    //   });
-    // });
-    // return events;
   };
 
   //空き時間を取得する関数

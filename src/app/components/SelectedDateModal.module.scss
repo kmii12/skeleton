@@ -71,6 +71,17 @@
           color: $accent;
         }
       }
+      .eventLabel_free {
+        // font-size: 1.6em;
+        width: 100%;
+        padding: 16px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $accent;
+        border-bottom: 2px dotted $sub;
+        border-top: 2px dotted $sub;
+      }
       .notEvent {
         font-weight: bold;
         margin: 20px;

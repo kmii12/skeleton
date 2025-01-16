@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styles from "./MainCalender.module.scss";
+import styles from "./SubCalender.module.scss";
 import { log } from "console";
 
 //db
@@ -15,11 +15,7 @@ import GetFreeTime from "../components/freeTime";
 import Header from "../components/header";
 import Futter from "../components/Futter";
 
-//?
-import { type } from "os";
-import { filterProps } from "framer-motion";
-
-const MainCalender: React.FC = () => {
+const SubCalender: React.FC = () => {
   //timezoneを日本に設定し今日の日付を取得する関数
   const getToday = () => {
     const formatter = new Intl.DateTimeFormat("ja-JP", {
@@ -416,6 +412,7 @@ const MainCalender: React.FC = () => {
                           end: event.endTime,
                           title: event.title,
                           id: event.id,
+                          color: event.color,
                         }));
 
                       // 空き時間データを取得
@@ -516,4 +513,4 @@ const MainCalender: React.FC = () => {
   );
 };
 
-export default MainCalender;
+export default SubCalender;

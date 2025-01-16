@@ -111,7 +111,7 @@ const SelectedDateModal: React.FC<SelectedDateModalProps> = ({
                     <h3>{slot.title}</h3>
                   </div>
                 ) : (
-                  <div key={slot.id} className={styles.eventLabel}>
+                  <div key={slot.id} className={styles.eventLabel_free}>
                     <span className={styles.colorLabel_free}></span>
                     <div className={styles.timeContainer}>
                       <p>{slot.start}</p>
