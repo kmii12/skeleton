@@ -61,6 +61,17 @@
 
           overflow: hidden;
         }
+        .freeSlotContainer {
+          width: 49px;
+          height: 16px;
+          padding-left: 2px;
+          font-weight: bold;
+          background: $accent;
+          border-radius: 2px;
+          color: $base;
+
+          overflow: hidden;
+        }
       }
       &.selected {
         border: 1px solid $accent;

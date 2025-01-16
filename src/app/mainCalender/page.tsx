@@ -376,45 +376,66 @@ const MainCalender: React.FC = () => {
                     {date}
                   </div>
                 </div>
-                <section className={styles.dateMainContainer}>
-                  {/* //日付から一致する予定の日付をフィルタリング */}
-                  {date &&
-                    events
-                      .filter((event) => {
-                        //フォーマットを"YYYY-MM-DD"に
-                        const formattedDate = `${currentYear}-${String(
-                          currentMonth
-                        ).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
+                {date && (
+                  <section className={styles.dateMainContainer}>
+                    {(() => {
+                      // フォーマットされた日付
+                      const formattedDate = `${currentYear}-${String(
+                        currentMonth
+                      ).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
 
-                        return event.date === formattedDate;
-                      })
-                      .map((event) => (
-                        <div key={event.id} className={styles.eventContainer}>
-                          <p>{event.title}</p>
+                      // 指定された日付の予定データをフィルタリング
+                      const filteredEvents = events
+                        .filter((event) => event.date === formattedDate)
+                        .map((event) => ({
+                          type: "event",
+                          start: event.startTime,
+                          end: event.endTime,
+                          title: event.title,
+                          id: event.id,
+                        }));
+
+                      // 空き時間データを取得
+                      const freeTimeSlots = GetFreeTime(
+                        filteredEvents.map((e) => ({
+                          startTime: e.start,
+                          endTime: e.end,
+                        }))
+                      ).map((slot, index) => ({
+                        type: "free",
+                        start: slot.start,
+                        end: slot.end,
+                        id: `free-${index}`, // ユニークなIDを生成
+                      }));
+
+                      // 予定と空き時間を統合してソート
+                      const allSlots = [
+                        ...filteredEvents,
+                        ...freeTimeSlots,
+                      ].sort((a, b) => a.start.localeCompare(b.start));
+
+                      // 統合データを表示
+                      return allSlots.map((slot) => (
+                        <div
+                          key={slot.id}
+                          className={
+                            slot.type === "event"
+                              ? styles.eventContainer
+                              : styles.freeSlotContainer
+                          }
+                        >
+                          {slot.type === "event" ? (
+                            <p>{slot.title}</p>
+                          ) : (
+                            <p>
+                              {slot.start} - {slot.end}
+                            </p>
+                          )}
                         </div>
-                      ))}
-                  {/* 空き時間を表示 */}
-                  {date && (
-                    <div className={styles.freeSlotsContainer}>
-                      {GetFreeTime(
-                        events.filter(
-                          (event) =>
-                            event.date ===
-                            `${currentYear}-${String(currentMonth).padStart(
-                              2,
-                              "0"
-                            )}-${String(date).padStart(2, "0")}`
-                        )
-                      ).map((slot, index) => (
-                        <div key={index} className={styles.freeSlot}>
-                          <p>
-                            {slot.start} - {slot.end}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </section>
+                      ));
+                    })()}
+                  </section>
+                )}
               </div>
             );
           })}
