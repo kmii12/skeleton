@@ -36,12 +36,20 @@
         width: 100%;
         height: 22px;
         margin-bottom: 3px;
+        display: flex;
+        justify-content: space-between;
 
         .dateNum {
           padding: 2px 3px 2px 2px;
           width: 22px;
           height: 100%;
           font-size: 1.2em;
+        }
+        .midnightMark {
+          background-image: url(../../../public/midnightMark.png);
+          width: 15px;
+          height: 15px;
+          margin: 2px 2px 0 0;
         }
       }
       .dateMainContainer {
@@ -61,7 +69,62 @@
 
           overflow: hidden;
         }
-        .freeSlotContainer {
+        .freeSlotTxt {
+          padding: 2px 0;
+        }
+        // .freeSlotContainer {
+        //   width: 49px;
+        //   height: 16px;
+        //   padding-left: 2px;
+        //   font-weight: bold;
+        //   background: $accent;
+        //   border-radius: 2px;
+        //   color: $base;
+
+        //   overflow: hidden;
+        // }
+
+        //ブロックスタイル----------------------------------------------
+        .block_one {
+          width: 49px;
+          height: 16px;
+          padding-left: 2px;
+          font-weight: bold;
+          background-image: url(../../../public/block_one.png);
+          background-repeat: no-repeat;
+          border-radius: 2px;
+          color: $base;
+
+          overflow: hidden;
+        }
+        .block_two {
+          width: 49px;
+          height: 16px;
+          padding-left: 2px;
+          font-weight: bold;
+          background-image: url(../../../public/block_two.png);
+          background-repeat: no-repeat;
+
+          border-radius: 2px;
+          color: $base;
+
+          overflow: hidden;
+        }
+
+        .block_three {
+          width: 49px;
+          height: 16px;
+          background-image: url(../../../public/block_three.png);
+          padding-left: 2px;
+          font-weight: bold;
+          // background: $accent;
+          border-radius: 2px;
+          color: $base;
+
+          overflow: hidden;
+        }
+
+        .block_stick {
           width: 49px;
           height: 16px;
           padding-left: 2px;
@@ -74,7 +137,7 @@
         }
       }
       &.selected {
-        border: 1px solid $accent;
+        border: 2px solid $accent;
       }
     }
 

@@ -232,8 +232,35 @@ const MainCalender: React.FC = () => {
 
     for (const event of eventsSort) {
       if (lastEnd < event.start) {
+        //空き時間が何時間あるか
+        const freeDuration = event.start - lastEnd;
+
+        //freeDurationに合わせてクラス付与
+        let durationClass = "";
+
+        //30分以上２時間未満
+        if (freeDuration >= 30 && freeDuration <= 119) {
+          durationClass = "block_one";
+        }
+        //２時間以上３時間未満
+        else if (freeDuration >= 120 && freeDuration <= 179) {
+          durationClass = "block_two";
+        }
+        //３時間以上４時間未満
+        else if (freeDuration >= 180 && freeDuration <= 239) {
+          durationClass = "block_three";
+        }
+        //４時間以上
+        else if (freeDuration >= 240) {
+          durationClass = "block_stick";
+        }
+
         //前のイベントが終わってから（ない場合は1日の始まり）次のイベントが始まるまでの時間があればその時間をfreeTimeに追加
-        freeTime.push({ start: timeData(lastEnd), end: timeData(event.start) });
+        freeTime.push({
+          start: timeData(lastEnd),
+          end: timeData(event.start),
+          className: durationClass,
+        });
       }
       //引数に含まれた数値のうち最大のものを取得しlastEndに入れてる
       //イベントの終了時刻をlastEndに上書き
@@ -243,7 +270,34 @@ const MainCalender: React.FC = () => {
 
     //dayEnd(24:00)までの空き時間を取得しfreeTimeに追加
     if (lastEnd < dayEnd) {
-      freeTime.push({ start: timeData(lastEnd), end: timeData(dayEnd) });
+      //空き時間が何時間あるか
+      const freeDuration = dayEnd - lastEnd;
+
+      //freeDurationに合わせてクラス付与
+      let durationClass = "";
+
+      //30分以上２時間未満
+      if (freeDuration >= 30 && freeDuration <= 119) {
+        durationClass = "block_one";
+      }
+      //２時間以上３時間未満
+      else if (freeDuration >= 120 && freeDuration <= 179) {
+        durationClass = "block_two";
+      }
+      //３時間以上４時間未満
+      else if (freeDuration >= 180 && freeDuration <= 239) {
+        durationClass = "block_three";
+      }
+      //４時間以上
+      else if (freeDuration >= 240) {
+        durationClass = "block_stick";
+      }
+
+      freeTime.push({
+        start: timeData(lastEnd),
+        end: timeData(dayEnd),
+        className: durationClass,
+      });
     }
 
     return freeTime;
@@ -375,6 +429,7 @@ const MainCalender: React.FC = () => {
                   >
                     {date}
                   </div>
+                  <div className={styles.midnightMark}></div>
                 </div>
                 {date && (
                   <section className={styles.dateMainContainer}>
@@ -401,12 +456,19 @@ const MainCalender: React.FC = () => {
                           startTime: e.start,
                           endTime: e.end,
                         }))
-                      ).map((slot, index) => ({
-                        type: "free",
-                        start: slot.start,
-                        end: slot.end,
-                        id: `free-${index}`, // ユニークなIDを生成
-                      }));
+                      )
+                        .filter(
+                          //朝の時間の条件フィルタリング
+                          (slot) =>
+                            !(slot.start === "00:00" && slot.end === "09:00")
+                        )
+                        .map((slot, index) => ({
+                          type: "free",
+                          start: slot.start,
+                          end: slot.end,
+                          className: slot.className,
+                          id: `free-${index}`, // ユニークなIDを生成
+                        }));
 
                       // 予定と空き時間を統合してソート
                       const allSlots = [
@@ -421,14 +483,14 @@ const MainCalender: React.FC = () => {
                           className={
                             slot.type === "event"
                               ? styles.eventContainer
-                              : styles.freeSlotContainer
+                              : styles[slot.className]
                           }
                         >
                           {slot.type === "event" ? (
                             <p>{slot.title}</p>
                           ) : (
-                            <p>
-                              {slot.start} - {slot.end}
+                            <p className={styles.freeSlotTxt}>
+                              {slot.start.split(":")[0]}
                             </p>
                           )}
                         </div>
