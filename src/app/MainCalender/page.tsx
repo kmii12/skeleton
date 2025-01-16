@@ -508,7 +508,38 @@ const MainCalender: React.FC = () => {
         <SelectedDateModal
           setShowModal={setShowModal}
           selectedDate={selectedDate}
-          events={events.filter((event) => event.date === selectedDate)}
+          slots={(() => {
+            const formattedDate = selectedDate;
+            const filteredEvents = events
+              .filter((event) => event.date === formattedDate)
+              .map((event) => ({
+                type: "event",
+                start: event.startTime,
+                end: event.endTime,
+                title: event.title,
+                id: event.id,
+              }));
+            const freeTimeSlots = GetFreeTime(
+              filteredEvents.map((e) => ({
+                startTime: e.start,
+                endTime: e.end,
+              }))
+            )
+              .filter(
+                (slot) => !(slot.start === "00:00" && slot.end === "09:00")
+              )
+              .map((slot, index) => ({
+                type: "free",
+                start: slot.start,
+                end: slot.end,
+                className: slot.className,
+                id: `free-${index}`,
+              }));
+            return [...filteredEvents, ...freeTimeSlots].sort((a, b) =>
+              a.start.localeCompare(b.start)
+            );
+          })()}
+          // events={events.filter((event) => event.date === selectedDate)}
         />
       )}
       <Futter></Futter>
