@@ -77,6 +77,16 @@ const MainCalender: React.FC = () => {
       isToday: boolean;
     }> = [];
 
+    // const [dates, setDates ] = useState<
+    // {
+    //   date: number | null;
+    //   weekEnd: boolean;
+    //   isSaturday: boolean;
+    //   isSunday: boolean;
+    //   isToday: boolean;
+    // }[]
+    // >([]);
+
     // //前月へ
     // const handlePrevMonth = () => {
     //   if (currentMonth === 1) {
@@ -270,7 +280,7 @@ const MainCalender: React.FC = () => {
   };
 
   //useEffect ----------------------------------------------
-  // useEffectで管理
+  // useEffectで管理;
   useEffect(() => {
     setDates(generateDates(currentYear, currentMonth));
     // const generatedDates = generateDates(currentYear, currentMonth);
@@ -292,6 +302,14 @@ const MainCalender: React.FC = () => {
     // };
     // fetchAndSetEvents();
   }, [currentYear, currentMonth]); // currentYear や currentMonth が変更されたときに再実行
+
+  //エラー回避用(generateDatesの戻り値を変換)
+  // useEffect(() => {
+  //   const generatedDates = generateDates(currentYear, currentMonth).map(
+  //     (item) => item.date
+  //   );
+  //   setDates(generatedDates);
+  // }, [currentYear, currentMonth]);
 
   //予定データ取得
   useEffect(() => {
