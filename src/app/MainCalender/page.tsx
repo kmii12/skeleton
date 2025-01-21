@@ -13,6 +13,13 @@ import SelectedDateModal from "../components/SelectedDateModal";
 import Header from "../components/header";
 import Futter from "../components/Futter";
 
+interface Event {
+  title: string;
+  date: string;
+  description: string;
+  location: string;
+}
+
 const MainCalender: React.FC = () => {
   //timezoneを日本に設定し今日の日付を取得する関数
   const getToday = () => {
@@ -39,10 +46,19 @@ const MainCalender: React.FC = () => {
   // const [currentMonth, setCurrentMonth] = useState(today.month);
   const [currentYear] = useState(today.year);
   const [currentMonth] = useState(today.month);
-  const [dates, setDates] = useState<Array<number | null>>([]);
+  // const [dates, setDates] = useState<Array<number | null>>([]);
+  const [dates, setDates] = useState<
+    Array<{
+      date: number | null;
+      weekEnd: boolean;
+      isSaturday: boolean;
+      isSunday: boolean;
+      isToday: boolean;
+    }>
+  >([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [events, setEvents] = useState<Array<any>>([]); // Firestoreのイベントデータを格納
+  const [events, setEvents] = useState<Array<Event>>([]); // Firestoreのイベントデータを格納
 
   //月毎に何日あるのか取得
   const getDaysInMonth = (year: number, month: number) => {
@@ -76,16 +92,6 @@ const MainCalender: React.FC = () => {
       isSunday: boolean;
       isToday: boolean;
     }> = [];
-
-    // const [dates, setDates ] = useState<
-    // {
-    //   date: number | null;
-    //   weekEnd: boolean;
-    //   isSaturday: boolean;
-    //   isSunday: boolean;
-    //   isToday: boolean;
-    // }[]
-    // >([]);
 
     // //前月へ
     // const handlePrevMonth = () => {
@@ -283,24 +289,6 @@ const MainCalender: React.FC = () => {
   // useEffectで管理;
   useEffect(() => {
     setDates(generateDates(currentYear, currentMonth));
-    // const generatedDates = generateDates(currentYear, currentMonth);
-    // setDates(generatedDates);
-    //   const events = await fetchEventsForMonth(currentYear, currentMonth);
-    //   console.log("firestoreから取得した予定のデータ:", events);
-    //   //カレンダーに日付データをマージ
-    //   const updateDates = generateDates.map((dateInfo) => {
-    //     if (dateInfo.date) {
-    //       const fullDate = `${currentYear}-${String(currentMonth).padStart(
-    //         2,
-    //         "0"
-    //       )}-${String(dateInfo.date).padStart(2, "0")}`;
-    //       return { ...dateInfo, events: events[fullDate] || [] };
-    //     }
-    //     return { ...dateInfo, events: [] };
-    //   });
-    //   setDates(updateDates);
-    // };
-    // fetchAndSetEvents();
   }, [currentYear, currentMonth]); // currentYear や currentMonth が変更されたときに再実行
 
   //エラー回避用(generateDatesの戻り値を変換)

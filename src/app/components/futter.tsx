@@ -15,6 +15,7 @@ const Futter = () => {
   const [activeButton, setActiveButton] = useState<string>("calendar1");
   // const [activeButton, setActiveButton] = useState<string | null>(null);
   // const [setIsCalendarOn] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isCalendarOn, setIsCalendarOn] = useState(true);
 
   const handleButtonClick = (button: string) => {
