@@ -74,7 +74,7 @@ const SelectedDateModal: React.FC<SelectedDateModalProps> = ({
 
   return (
     <AnimatePresence>
-      {setShowModal && (
+      {typeof setShowModal === "function" && (
         <motion.div
           className={styles.modal}
           onClick={(e) => e.stopPropagation()}
