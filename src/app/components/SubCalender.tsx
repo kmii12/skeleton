@@ -2,16 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import styles from "./SubCalender.module.scss";
-import { log } from "console";
 
 //db
 import { db } from "../../firebase";
-import { query, collection, where, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 //components
 import AddEventButton from "../components/AddEventButton";
 import SelectedDateModal from "../components/SelectedDateModal";
-import GetFreeTime from "../components/freeTime";
+// import GetFreeTime from "../components/freeTime";
 import Header from "../components/header";
 import Futter from "../components/Futter";
 
@@ -37,8 +36,9 @@ const SubCalender: React.FC = () => {
   };
   //日本の今日
   const today = getToday();
-  const [currentYear, setCurrentYear] = useState(today.year);
-  const [currentMonth, setCurrentMonth] = useState(today.month);
+  // const [currentYear, setCurrentYear] = useState(today.year);
+  const [currentYear] = useState(today.year);
+  const [currentMonth] = useState(today.month);
   const [dates, setDates] = useState<Array<number | null>>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -60,10 +60,10 @@ const SubCalender: React.FC = () => {
     const todayDate = today.date;
     // console.log("今日は", todayDate, "日です");
     //今日の年（yearのみ）取得
-    const todayYear = today.year;
+    // const todayYear = today.year;
     // console.log("今日は", todayYear, "年です");
     //今日の月（monthのみ）取得
-    const todayMonth = today.month;
+    // const todayMonth = today.month;
     // console.log("今日は", todayMonth, "月です");
     //yearの値が一致し、かつmonthも一致する
     const isThisMonth = year === today.year && month === today.month;
@@ -78,23 +78,23 @@ const SubCalender: React.FC = () => {
     }> = [];
 
     //前月へ
-    const handlePrevMonth = () => {
-      if (currentMonth === 1) {
-        setCurrentYear(currentYear - 1);
-        setCurrentMonth(12);
-      } else {
-        setCurrentMonth(currentMonth - 1);
-      }
-    };
+    // const handlePrevMonth = () => {
+    //   if (currentMonth === 1) {
+    //     setCurrentYear(currentYear - 1);
+    //     setCurrentMonth(12);
+    //   } else {
+    //     setCurrentMonth(currentMonth - 1);
+    //   }
+    // };
 
-    const handleNextMonth = () => {
-      if (currentMonth === 12) {
-        setCurrentYear(currentYear + 1);
-        setCurrentMonth(1);
-      } else {
-        setCurrentMonth(currentMonth + 1);
-      }
-    };
+    // const handleNextMonth = () => {
+    //   if (currentMonth === 12) {
+    //     setCurrentYear(currentYear + 1);
+    //     setCurrentMonth(1);
+    //   } else {
+    //     setCurrentMonth(currentMonth + 1);
+    //   }
+    // };
 
     //firstDayOfMonthで取得した、月の初日の曜日より前の部分を空白にする
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -129,7 +129,7 @@ const SubCalender: React.FC = () => {
     return dates;
   };
 
-  //firestoreから予定データ取得する関数
+  //fireStoreから予定データ取得する関数
   const fetchEvents = async () => {
     // //開始日と終了日
     // const startDate = `${year}-${String(month).padStart(2, "0")}-01`;
@@ -273,24 +273,6 @@ const SubCalender: React.FC = () => {
   // useEffectで管理
   useEffect(() => {
     setDates(generateDates(currentYear, currentMonth));
-    // const generatedDates = generateDates(currentYear, currentMonth);
-    // setDates(generatedDates);
-    //   const events = await fetchEventsForMonth(currentYear, currentMonth);
-    //   console.log("firestoreから取得した予定のデータ:", events);
-    //   //カレンダーに日付データをマージ
-    //   const updateDates = generateDates.map((dateInfo) => {
-    //     if (dateInfo.date) {
-    //       const fullDate = `${currentYear}-${String(currentMonth).padStart(
-    //         2,
-    //         "0"
-    //       )}-${String(dateInfo.date).padStart(2, "0")}`;
-    //       return { ...dateInfo, events: events[fullDate] || [] };
-    //     }
-    //     return { ...dateInfo, events: [] };
-    //   });
-    //   setDates(updateDates);
-    // };
-    // fetchAndSetEvents();
   }, [currentYear, currentMonth]); // currentYear や currentMonth が変更されたときに再実行
 
   //予定データ取得
@@ -322,20 +304,20 @@ const SubCalender: React.FC = () => {
   // const dates = generateDates(currentYear, currentMonth);
 
   // 月名リスト
-  const monthNames = [
-    "1月",
-    "2月",
-    "3月",
-    "4月",
-    "5月",
-    "6月",
-    "7月",
-    "8月",
-    "9月",
-    "10月",
-    "11月",
-    "12月",
-  ];
+  // const monthNames = [
+  //   "1月",
+  //   "2月",
+  //   "3月",
+  //   "4月",
+  //   "5月",
+  //   "6月",
+  //   "7月",
+  //   "8月",
+  //   "9月",
+  //   "10月",
+  //   "11月",
+  //   "12月",
+  // ];
   return (
     <>
       <Header></Header>
@@ -359,8 +341,8 @@ const SubCalender: React.FC = () => {
 
         <div className={styles.dates}>
           {dates.map((dateInfo, index) => {
-            //dateinfoを分割して代入してる
-            const { date, weekEnd, isSaturday, isSunday, isToday } = dateInfo;
+            //dateInfoを分割して代入してる
+            const { date, isSaturday, isSunday, isToday } = dateInfo;
             //空白を定数に定義
             // const displayDate = date || "";
             //日付がある場合とない場合でクラス名をそれぞれ付与

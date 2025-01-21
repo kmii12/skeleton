@@ -1,16 +1,16 @@
 "use client";
-import React from "react";
+// import React from "react";
 
-type Event = {
-  startTime: string;
-  endTime: string;
-};
+// type Event = {
+//   startTime: string;
+//   endTime: string;
+// };
 
-type FreeTimeProps = {
-  events: Array<Event>; // イベントリスト
-  startTime?: string; // 営業開始時間 (デフォルト: 09:00)
-  endTime?: string; // 営業終了時間 (デフォルト: 18:00)
-};
+// type FreeTimeProps = {
+//   events: Array<Event>; // イベントリスト
+//   startTime?: string; // 営業開始時間 (デフォルト: 09:00)
+//   endTime?: string; // 営業終了時間 (デフォルト: 18:00)
+// };
 
 const GetFreeTime = (events: Array<{ startTime: string; endTime: string }>) => {
   //全時間を分単位で計算

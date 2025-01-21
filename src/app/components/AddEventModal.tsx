@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./AddEventModal.module.scss";
-import { log } from "console";
 //db
 import { db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -12,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 //framer motion
-import { easeIn, easeInOut, motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 
 interface AddEventModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,13 +26,13 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
   // const [endTime, setEndTime] = useState<string | null>(null); // 終了時間
   const [startDateTime, setStartDateTime] = useState<string | null>(null); // 開始日時
   const [endDateTime, setEndDateTime] = useState<string | null>(null); // 終了日時
-  const [date, setDate] = useState<string | null>(null);
+  // const [date, setDate] = useState<string | null>(null);
 
   const [eventColor, setEventColor] = useState<string>("red"); // 予定のカラー
   const [memo, setMemo] = useState<string>(""); // メモ
   const [history, setHistory] = useState<string>(""); // 履歴
 
-  // 予定をfirestoreに追加する関数
+  // 予定をfireStoreに追加する関数
   const addEvent = async (e: React.FormEvent) => {
     if (!title) return; // タイトルが入力されていない場合は保存しない
 

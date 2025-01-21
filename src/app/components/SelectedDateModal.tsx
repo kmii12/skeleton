@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import styles from "./SelectedDateModal.module.scss";
-import { log } from "console";
 //db
 // import { db } from "../../firebase";
 // import { collection, addDoc } from "firebase/firestore";
@@ -22,11 +20,11 @@ interface Slot {
   id: string;
 }
 
-interface Props {
-  setShowModal: (show: boolean) => void;
-  selectedDate: string;
-  slots: Slot[];
-}
+// interface Props {
+//   setShowModal: (show: boolean) => void;
+//   selectedDate: string;
+//   slots: Slot[];
+// }
 
 interface SelectedDateModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
