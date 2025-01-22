@@ -15,10 +15,24 @@ import Header from "../components/header";
 import Futter from "../components/Futter";
 
 interface Event {
+  id: string;
   title: string;
   date: string;
-  description: string;
-  location: string;
+
+  startTime: string;
+  endTime: string;
+  color: string;
+  isAllday: boolean;
+}
+
+interface Slot {
+  type: "event" | "free"; // 'event' または 'free'（予定か空き時間か）
+  start: string; // 時刻（"HH:mm"形式）
+  end: string; // 終了時刻（"HH:mm"形式）
+  id: string; // 一意な識別子
+  color?: string; // 予定の場合の背景色（オプション）
+  className?: string; // 空き時間のスタイルを指定するクラス名（オプション）
+  title?: string; // 予定のタイトル（オプション）
 }
 
 const SubCalender: React.FC = () => {
@@ -159,7 +173,7 @@ const SubCalender: React.FC = () => {
       const fetchEvents = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      }));
+      })) as Event[];
       // console.log("取得した予定データ", fetchEvents);
 
       setEvents(fetchEvents);
@@ -434,7 +448,7 @@ const SubCalender: React.FC = () => {
                         }));
 
                       // 予定と空き時間を統合してソート
-                      const allSlots = [
+                      const allSlots: Slot[] = [
                         ...filteredEvents,
                         ...freeTimeSlots,
                       ].sort((a, b) => a.start.localeCompare(b.start));
