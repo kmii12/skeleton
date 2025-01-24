@@ -12,7 +12,7 @@ import AddEventButton from "../components/AddEventButton";
 import SelectedDateModal from "../components/SelectedDateModal";
 // import GetFreeTime from "../components/freeTime";
 import Header from "../components/header";
-import Futter from "../components/Futter";
+import Footer from "./Footer";
 
 interface Event {
   id: string;
@@ -525,7 +525,7 @@ const SubCalender: React.FC = () => {
         />
       )}
       <div className={styles.footerTopWrap}></div>
-      <Futter></Futter>
+      <Footer></Footer>
       <AddEventButton />
     </>
   );

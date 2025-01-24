@@ -11,7 +11,7 @@ import { collection, getDocs } from "firebase/firestore";
 import AddEventButton from "../components/AddEventButton";
 import SelectedDateModal from "../components/SelectedDateModal";
 import Header from "../components/header";
-import Futter from "../components/Futter";
+import Footer from "../components/Footer";
 
 interface Event {
   id: string;
@@ -527,7 +527,7 @@ const MainCalender: React.FC = () => {
         />
       )}
       <div className={styles.footerTopWrap}></div>
-      <Futter></Futter>
+      <Footer></Footer>
       <AddEventButton />
     </>
   );

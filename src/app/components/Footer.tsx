@@ -8,9 +8,9 @@ import {
 import { faCalendar as faRegCalendar } from "@fortawesome/free-regular-svg-icons";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./futter.module.scss"; // 修正したSCSSファイルをインポート
+import styles from "./footer.module.scss"; // 修正したSCSSファイルをインポート
 
-const Futter = () => {
+const Footer = () => {
   // // 初期状態で "calendar1" をアクティブに設定
   const [activeButton, setActiveButton] = useState<string>("calendar1");
   // const [activeButton, setActiveButton] = useState<string | null>(null);
@@ -87,4 +87,4 @@ const Futter = () => {
   );
 };
 
-export default Futter;
+export default Footer;
