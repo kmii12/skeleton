@@ -302,6 +302,7 @@ const SubCalender: React.FC = () => {
   // useEffectで管理
   useEffect(() => {
     setDates(generateDates(currentYear, currentMonth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentYear, currentMonth]); // currentYear や currentMonth が変更されたときに再実行
 
   //予定データ取得
@@ -444,7 +445,7 @@ const SubCalender: React.FC = () => {
                           end: slot.end,
                           className: slot.className,
                           id: `free-${index}`, // ユニークなIDを生成
-                          color: slot.color,
+                          color: slot.color ?? "defaultColor",
                         }));
 
                       // 予定と空き時間を統合してソート
@@ -460,7 +461,7 @@ const SubCalender: React.FC = () => {
                           className={
                             slot.type === "event"
                               ? styles.eventContainer
-                              : styles[slot.className]
+                              : styles[slot.className as string]
                           }
                           style={
                             slot.type === "event"

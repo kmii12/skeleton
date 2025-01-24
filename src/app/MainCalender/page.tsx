@@ -305,17 +305,14 @@ const MainCalender: React.FC = () => {
 
   //useEffect ----------------------------------------------
   // useEffectで管理;
+  // useEffect(() => {
+  //   setDates(generateDates(currentYear, currentMonth));
+  // }, [currentYear, currentMonth]); // currentYear や currentMonth が変更されたときに再実行
+
   useEffect(() => {
     setDates(generateDates(currentYear, currentMonth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentYear, currentMonth]); // currentYear や currentMonth が変更されたときに再実行
-
-  //エラー回避用(generateDatesの戻り値を変換)
-  // useEffect(() => {
-  //   const generatedDates = generateDates(currentYear, currentMonth).map(
-  //     (item) => item.date
-  //   );
-  //   setDates(generatedDates);
-  // }, [currentYear, currentMonth]);
 
   //予定データ取得
   useEffect(() => {
@@ -471,7 +468,7 @@ const MainCalender: React.FC = () => {
                           className={
                             slot.type === "event"
                               ? styles.eventContainer
-                              : styles[slot.className]
+                              : styles[slot.className as string]
                           }
                         >
                           {slot.type === "event" ? (
