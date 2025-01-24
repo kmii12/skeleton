@@ -1,4 +1,4 @@
-@import "/styles/color.scss";
+@import "/color.scss";
 
 .page {
   height: 100vh;
@@ -8,12 +8,15 @@
   justify-content: center;
 }
 .appName {
-  font-size: 3em;
-  color: #683eff;
+  width: 200px;
+  height: 80px;
+  background-image: url(../../public/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .btn {
   padding: 6px;
   border-radius: 10px;
-  border: 0.5px solid #683eff;
-  color: #683eff;
+  border: 0.5px solid #403761;
+  color: #403761;
 }
