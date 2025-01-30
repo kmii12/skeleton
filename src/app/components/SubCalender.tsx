@@ -18,22 +18,21 @@ interface Event {
   id: string;
   title: string;
   date: string;
-
   startTime: string;
   endTime: string;
   color: string;
   isAllday: boolean;
 }
 
-interface Slot {
-  type: "event" | "free"; // 'event' または 'free'（予定か空き時間か）
-  start: string; // 時刻（"HH:mm"形式）
-  end: string; // 終了時刻（"HH:mm"形式）
-  id: string; // 一意な識別子
-  color?: string; // 予定の場合の背景色（オプション）
-  className?: string; // 空き時間のスタイルを指定するクラス名（オプション）
-  title?: string; // 予定のタイトル（オプション）
-}
+// interface Slot {
+//   type: "event" | "free"; // 'event' または 'free'（予定か空き時間か）
+//   start: string; // 時刻（"HH:mm"形式）
+//   end: string; // 終了時刻（"HH:mm"形式）
+//   id: string; // 一意な識別子
+//   color?: string; // 予定の場合の背景色（オプション）
+//   className?: string; // 空き時間のスタイルを指定するクラス名（オプション）
+//   title?: string; // 予定のタイトル（オプション）
+// }
 
 const SubCalender: React.FC = () => {
   //timezoneを日本に設定し今日の日付を取得する関数
@@ -83,20 +82,11 @@ const SubCalender: React.FC = () => {
     const daysInMonth = getDaysInMonth(year, month - 1);
     //月の初日が何曜日か
     const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
-    // console.log("今月は", firstDayOfMonth, "から始まる");
 
     //今日の日にち（dateのみ）取得
     const todayDate = today.date;
-    // console.log("今日は", todayDate, "日です");
-    //今日の年（yearのみ）取得
-    // const todayYear = today.year;
-    // console.log("今日は", todayYear, "年です");
-    //今日の月（monthのみ）取得
-    // const todayMonth = today.month;
-    // console.log("今日は", todayMonth, "月です");
-    //yearの値が一致し、かつmonthも一致する
+
     const isThisMonth = year === today.year && month === today.month;
-    // console.log(isThisMonth);
 
     const dates: Array<{
       date: number | null;
@@ -105,25 +95,6 @@ const SubCalender: React.FC = () => {
       isSunday: boolean;
       isToday: boolean;
     }> = [];
-
-    //前月へ
-    // const handlePrevMonth = () => {
-    //   if (currentMonth === 1) {
-    //     setCurrentYear(currentYear - 1);
-    //     setCurrentMonth(12);
-    //   } else {
-    //     setCurrentMonth(currentMonth - 1);
-    //   }
-    // };
-
-    // const handleNextMonth = () => {
-    //   if (currentMonth === 12) {
-    //     setCurrentYear(currentYear + 1);
-    //     setCurrentMonth(1);
-    //   } else {
-    //     setCurrentMonth(currentMonth + 1);
-    //   }
-    // };
 
     //firstDayOfMonthで取得した、月の初日の曜日より前の部分を空白にする
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -160,14 +131,6 @@ const SubCalender: React.FC = () => {
 
   //fireStoreから予定データ取得する関数
   const fetchEvents = async () => {
-    // //開始日と終了日
-    // const startDate = `${year}-${String(month).padStart(2, "0")}-01`;
-    // const endDate = `${year}-${String(month).padStart(2, "0")}-${new Date(
-    //   year,
-    //   month,
-    //   0
-    // ).getDate()}`;
-
     try {
       const querySnapshot = await getDocs(collection(db, "events"));
       const fetchEvents = querySnapshot.docs.map((doc) => ({
@@ -184,7 +147,7 @@ const SubCalender: React.FC = () => {
 
   //空き時間を取得する関数
   const GetFreeTime = (
-    events: Array<{ startTime: string; endTime: string }>
+    events: Array<{ startTime: string; endTime: string; color: string }>
   ) => {
     //全時間を分単位で計算
     const timeMinutes = (time: string) => {
@@ -292,14 +255,10 @@ const SubCalender: React.FC = () => {
         className: durationClass,
       });
     }
-
     return freeTime;
-
-    // return <div></div>;
   };
 
   //useEffect ----------------------------------------------
-  // useEffectで管理
   useEffect(() => {
     setDates(generateDates(currentYear, currentMonth));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -425,6 +384,7 @@ const SubCalender: React.FC = () => {
                           title: event.title,
                           id: event.id,
                           color: event.color,
+                          className: "",
                         }));
 
                       // 空き時間データを取得
@@ -432,6 +392,7 @@ const SubCalender: React.FC = () => {
                         filteredEvents.map((e) => ({
                           startTime: e.start,
                           endTime: e.end,
+                          color: e.color,
                         }))
                       )
                         .filter(
@@ -445,11 +406,13 @@ const SubCalender: React.FC = () => {
                           end: slot.end,
                           className: slot.className,
                           id: `free-${index}`, // ユニークなIDを生成
-                          color: slot.color ?? "defaultColor",
+                          // color: slot.color ?? "defaultColor",
+                          color: "",
+                          title: "",
                         }));
 
                       // 予定と空き時間を統合してソート
-                      const allSlots: Slot[] = [
+                      const allSlots = [
                         ...filteredEvents,
                         ...freeTimeSlots,
                       ].sort((a, b) => a.start.localeCompare(b.start));
@@ -495,27 +458,33 @@ const SubCalender: React.FC = () => {
             const filteredEvents = events
               .filter((event) => event.date === formattedDate)
               .map((event) => ({
-                type: "event",
+                type: "event" as const,
                 start: event.startTime,
                 end: event.endTime,
                 title: event.title,
                 id: event.id,
+                className: "",
+                color: event.color,
               }));
             const freeTimeSlots = GetFreeTime(
               filteredEvents.map((e) => ({
+                // type: "free",
                 startTime: e.start,
                 endTime: e.end,
+                color: e.color,
               }))
             )
               .filter(
                 (slot) => !(slot.start === "00:00" && slot.end === "09:00")
               )
               .map((slot, index) => ({
-                type: "free",
+                type: "free" as const,
                 start: slot.start,
                 end: slot.end,
                 className: slot.className,
                 id: `free-${index}`,
+                title: "",
+                color: "",
               }));
             return [...filteredEvents, ...freeTimeSlots].sort((a, b) =>
               a.start.localeCompare(b.start)
