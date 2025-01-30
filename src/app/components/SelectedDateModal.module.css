@@ -1,0 +1,84 @@
+.modal {
+  background-color: #fdfdfe;
+  padding: 0;
+  width: 100vw;
+  height: 90vh;
+}
+.modal button,
+.modal input,
+.modal label,
+.modal select,
+.modal textarea {
+  all: unset;
+}
+.modal button {
+  font-weight: bold !important;
+}
+.modal .modalContent {
+  width: 100%;
+  height: 100%;
+}
+.modal .modalContent header {
+  background-color: #683eff;
+  color: #fdfdfe;
+  padding: 4px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.modal .modalContent header h2 {
+  font-size: 1.1em;
+}
+.modal .modalContent main .eventLabel {
+  width: 100%;
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal .modalContent main .eventLabel .colorLabel {
+  width: 6px;
+  height: 30px;
+  background-color: #683eff;
+  border-radius: 2px;
+}
+.modal .modalContent main .eventLabel .colorLabel_free {
+  width: 6px;
+  height: 30px;
+  background-color: #ff3e71;
+  border-radius: 2px;
+}
+.modal .modalContent main .eventLabel .timeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1em;
+}
+.modal .modalContent main .eventLabel .timeContainer .timeBorder {
+  background-color: #403761;
+  height: 3px;
+  width: 1px;
+}
+.modal .modalContent main .eventLabel .timeContainer p {
+  font-weight: bold;
+}
+.modal .modalContent main .eventLabel h3 {
+  font-size: 1.6em;
+}
+.modal .modalContent main .eventLabel .freeTimeTtl {
+  color: #ff3e71;
+}
+.modal .modalContent main .eventLabel_free {
+  width: 100%;
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff3e71;
+  border-bottom: 2px dotted #beb1e6;
+  border-top: 2px dotted #beb1e6;
+}
+.modal .modalContent main .notEvent {
+  font-weight: bold;
+  margin: 20px;
+  font-size: 1.4em;
+}/*# sourceMappingURL=SelectedDateModal.module.css.map */

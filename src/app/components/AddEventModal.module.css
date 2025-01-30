@@ -1,0 +1,70 @@
+.modal {
+  background-color: #fdfdfe;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 90vh;
+}
+.modal button,
+.modal input,
+.modal label,
+.modal select,
+.modal textarea {
+  all: unset;
+}
+.modal button {
+  font-weight: bold !important;
+}
+.modal header {
+  display: flex;
+  background-color: #683eff;
+  justify-content: space-between;
+  color: #fdfdfe;
+  align-items: center;
+  padding: 14px 17px;
+  border-radius: 20px 20px 0% 0%;
+  position: relative;
+}
+.modal header button {
+  font-size: 1.6em;
+}
+.modal header .closeBtn {
+  font-size: 1.2em;
+}
+.modal header .storageBtn {
+  margin-left: 20px;
+}
+.modal main {
+  padding: 26px 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.modal main .ttlContainer {
+  display: grid;
+  grid-template-columns: 1fr 16px 50px;
+}
+.modal main .ttlContainer .ttlWrap {
+  font-size: 2em;
+}
+.modal main .ttlContainer .regularBtn {
+  font-size: 1.4em;
+  color: #beb1e6;
+  border: 0.5px solid #beb1e6;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal main .ttlWrap {
+  all: unset;
+}
+.modal main .isNotAlldayWContainer {
+  display: flex;
+  flex-direction: column;
+}
+.modal main .isNotAlldayWContainer input {
+  background-color: gray;
+  font-size: 1.6em;
+  color: #403761;
+}/*# sourceMappingURL=AddEventModal.module.css.map */
