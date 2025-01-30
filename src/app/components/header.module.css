@@ -1,0 +1,58 @@
+@charset "UTF-8";
+.header {
+  display: flex; /* 横並びにする */
+  justify-content: space-between; /* 左右に要素を分ける */
+  align-items: center; /* 高さ方向で中央揃え */
+  padding: 20px 20px 0px 20px;
+  background-color: #fdfdfe;
+}
+.header__yearMonth {
+  display: flex; /* 年と月を横並びにする */
+  align-items: center;
+  gap: 10px; /* 要素間の余白を設定 */
+}
+.header__year, .header__month {
+  display: flex; /* ボタンとテキストを横並びにする */
+  align-items: center;
+  gap: 10px; /* ボタンとテキストの間隔 */
+}
+.header__text {
+  font-size: 2.2em;
+  color: #beb1e6;
+  font-weight: bold;
+  width: 60px;
+}
+.header__btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1rem;
+}
+.header__btn:hover {
+  color: #ffcc00;
+}
+.header__actions {
+  display: flex; /* 検索バーとハンバーガーメニューを横並びにする */
+  align-items: center;
+  gap: 20px; /* 要素間の余白を設定 */
+}
+.header__search {
+  position: relative; /* アイコンを入力欄内に配置する */
+  display: flex; /* 入力欄とアイコンを横並びにする */
+}
+.header__searchInput {
+  padding: 5px 30px 5px 10px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+}
+.header__searchIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: gray;
+}/*# sourceMappingURL=header.module.css.map */

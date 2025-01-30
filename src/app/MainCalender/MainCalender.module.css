@@ -1,0 +1,133 @@
+.calenderContainer {
+  margin: 0px 0 0 0;
+  width: 100vw;
+  height: 626px;
+}
+.calenderContainer .weekdays {
+  font-size: 1em;
+  font-weight: bold;
+  padding: 12px 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calenderContainer .weekdays .weekday {
+  display: flex;
+  justify-content: center;
+}
+.calenderContainer .weekdays .sunday {
+  color: #fe3b30;
+}
+.calenderContainer .weekdays .saturday {
+  color: #1677ff;
+}
+.calenderContainer .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calenderContainer .dates .date {
+  height: 125px;
+  border: 0.35px #edeaf5 solid;
+  box-shadow: 0 0 2px rgba(122, 119, 128, 0.25);
+}
+.calenderContainer .dates .date .dateTopContainer {
+  width: 100%;
+  height: 22px;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+.calenderContainer .dates .date .dateTopContainer .dateNum {
+  padding: 2px 3px 2px 2px;
+  width: 22px;
+  height: 100%;
+  font-size: 1.2em;
+}
+.calenderContainer .dates .date .dateTopContainer .midnightMark {
+  background-image: url(../../../public/midnightMark.png);
+  width: 15px;
+  height: 15px;
+  margin: 2px 2px 0 0;
+}
+.calenderContainer .dates .date .dateMainContainer {
+  padding: 0 2px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.calenderContainer .dates .date .dateMainContainer .eventContainer {
+  width: 49px;
+  height: 16px;
+  padding-left: 2px;
+  font-weight: bold;
+  background: #f5f5ff;
+  border-radius: 2px;
+  border: 0.5px solid #beb1e6;
+  color: #beb1e6;
+  overflow: hidden;
+}
+.calenderContainer .dates .date .dateMainContainer .freeSlotTxt {
+  padding: 1px 0;
+}
+.calenderContainer .dates .date .dateMainContainer .block_one {
+  width: 49px;
+  height: 16px;
+  padding-left: 2px;
+  font-weight: bold;
+  background-image: url(../../../public/block_one.png);
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  color: #fdfdfe;
+  overflow: hidden;
+}
+.calenderContainer .dates .date .dateMainContainer .block_two {
+  width: 49px;
+  height: 16px;
+  padding-left: 2px;
+  font-weight: bold;
+  background-image: url(../../../public/block_two.png);
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  color: #fdfdfe;
+  overflow: hidden;
+}
+.calenderContainer .dates .date .dateMainContainer .block_three {
+  width: 49px;
+  height: 16px;
+  background-image: url(../../../public/block_three.png);
+  padding-left: 2px;
+  font-weight: bold;
+  border-radius: 2px;
+  color: #fdfdfe;
+  overflow: hidden;
+}
+.calenderContainer .dates .date .dateMainContainer .block_stick {
+  width: 49px;
+  height: 16px;
+  padding-left: 2px;
+  font-weight: bold;
+  background: #ff3e71;
+  border-radius: 2px;
+  color: #fdfdfe;
+  overflow: hidden;
+}
+.calenderContainer .dates .date.selected {
+  border: 2px solid #683eff;
+}
+.calenderContainer .dates .saturday {
+  color: #1677ff;
+}
+.calenderContainer .dates .sunday {
+  color: #fe3b30;
+}
+.calenderContainer .dates .isToday {
+  background-color: #683eff;
+  color: #fdfdfe;
+}
+.calenderContainer .dates .dateOut {
+  background-color: #f6f6f9;
+}
+
+.footerTopWrap {
+  width: 100vw;
+  height: 40px;
+}/*# sourceMappingURL=MainCalender.module.css.map */

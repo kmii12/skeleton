@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fdfdfe;
+  color: white;
+  box-shadow: inset 0px 0px 1px 0px #e6e2f3;
+}
+.footer__button {
+  background: none;
+  border: none;
+  color: #beb1e6;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.footer__button.active {
+  color: #683eff;
+}
+.footer__button:hover.active {
+  color: #683eff;
+}
+.footer__buttonsMiddle {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}/*# sourceMappingURL=futter.module.css.map */
