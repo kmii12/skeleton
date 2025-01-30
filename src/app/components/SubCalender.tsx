@@ -10,7 +10,6 @@ import { collection, getDocs } from "firebase/firestore";
 //components
 import AddEventButton from "../components/AddEventButton";
 import SelectedDateModal from "../components/SelectedDateModal";
-// import GetFreeTime from "../components/freeTime";
 import Header from "../components/header";
 import Footer from "./Footer";
 

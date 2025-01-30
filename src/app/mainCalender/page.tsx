@@ -17,7 +17,6 @@ interface Event {
   id: string;
   title: string;
   date: string;
-
   startTime: string;
   endTime: string;
   color: string;
@@ -63,10 +62,15 @@ const MainCalender: React.FC = () => {
   // const [dates, setDates] = useState<Array<number | null>>([]);
   const [dates, setDates] = useState<
     Array<{
-      id: string; // Firestore ドキュメントの ID
-      title: string;
-      description: string;
-      location: string;
+      // id: string; // Firestore ドキュメントの ID
+      // title: string;
+      // description: string;
+      // location: string;
+      // date: number | null;
+      // weekEnd: boolean;
+      // isSaturday: boolean;
+      // isSunday: boolean;
+      // isToday: boolean;
       date: number | null;
       weekEnd: boolean;
       isSaturday: boolean;
@@ -386,7 +390,7 @@ const MainCalender: React.FC = () => {
                       const filteredEvents = events
                         .filter((event) => event.date === formattedDate)
                         .map((event) => ({
-                          type: "event",
+                          type: "event" as const,
                           start: event.startTime,
                           end: event.endTime,
                           title: event.title,
@@ -406,11 +410,12 @@ const MainCalender: React.FC = () => {
                             !(slot.start === "00:00" && slot.end === "09:00")
                         )
                         .map((slot, index) => ({
-                          type: "free",
+                          type: "free" as const,
                           start: slot.start,
                           end: slot.end,
                           className: slot.className,
-                          id: `free-${index}`, // ユニークなIDを生成
+                          id: `free-${index}`,
+                          title: "", // ユニークなIDを生成
                         }));
 
                       // 予定と空き時間を統合してソート
@@ -455,7 +460,7 @@ const MainCalender: React.FC = () => {
             const filteredEvents = events
               .filter((event) => event.date === formattedDate)
               .map((event) => ({
-                type: "event",
+                type: "event" as const,
                 start: event.startTime,
                 end: event.endTime,
                 title: event.title,
@@ -471,7 +476,7 @@ const MainCalender: React.FC = () => {
                 (slot) => !(slot.start === "00:00" && slot.end === "09:00")
               )
               .map((slot, index) => ({
-                type: "free",
+                type: "free" as const,
                 start: slot.start,
                 end: slot.end,
                 className: slot.className,
