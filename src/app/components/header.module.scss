@@ -1,5 +1,4 @@
-@import "../styles/color.scss";
-
+@use "../styles/color" as *;
 .header {
   display: flex; /* 横並びにする */
   justify-content: space-between; /* 左右に要素を分ける */

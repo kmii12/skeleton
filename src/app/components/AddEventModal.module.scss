@@ -1,4 +1,4 @@
-@import "../styles/color.scss";
+@use "../styles/color" as *;
 
 .modal {
   background-color: $base;
