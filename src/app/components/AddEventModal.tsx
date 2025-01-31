@@ -202,11 +202,29 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
               required
             </select>
 
+            <div className={styles.selectContainer}>
+              <h3>繰り返し</h3>
+              <select className={styles.repeatSelect}>
+                <option value="なし" selected>
+                  なし
+                </option>
+              </select>
+            </div>
+            <div className={styles.selectContainer}>
+              <h3>通知</h3>
+              <select className={styles.repeatSelect}>
+                <option value="なし" selected>
+                  なし
+                </option>
+              </select>
+            </div>
+
             {/* メモ */}
             <textarea
               placeholder="メモ"
               value={memo}
               onChange={(e) => setMemo(e.target.value)}
+              className={styles.memoWrap}
             />
           </main>
         </form>

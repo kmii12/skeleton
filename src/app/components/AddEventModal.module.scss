@@ -112,7 +112,39 @@
       }
     }
 
-    // .colorSelect {
-    // }
+    .selectContainer {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 14px;
+      .repeatSelect {
+        display: flex;
+        align-items: center;
+        width: 220px;
+        height: 26px;
+        color: $main;
+        font-weight: bold;
+        text-align: right;
+        padding-right: 20px;
+        background-color: $bg_event;
+        border: 0.5px solid $sub;
+        border-radius: 4px;
+      }
+    }
+
+    .memoWrap {
+      width: 327px;
+      height: 204px;
+      background-color: $bg_event;
+      border: 0.5px solid $sub;
+      border-radius: 4px;
+      margin: 0 auto;
+      padding: 8px 10px;
+    }
+    .memoWrap::placeholder {
+      color: $sub;
+    }
   }
 }
