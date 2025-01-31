@@ -30,7 +30,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
 
   const [eventColor, setEventColor] = useState<string>("red"); // 予定のカラー
   const [memo, setMemo] = useState<string>(""); // メモ
-  const [history, setHistory] = useState<string>(""); // 履歴
+  // const [history, setHistory] = useState<string>(""); // 履歴
 
   // 予定をfireStoreに追加する関数
   const addEvent = async (e: React.FormEvent) => {
@@ -138,6 +138,23 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
               <button className={styles.regularBtn}>定型</button>
             </section>
 
+            {/* 履歴 */}
+            <h3 className={styles.historyTtl}>履歴</h3>
+            {/* <input
+              type="text"
+              value={history}
+              onChange={(e) => setHistory(e.target.value)}
+              className={styles.historyContainer}
+            /> */}
+            <div className={styles.historyContainer}>
+              <section className={styles.historyItem}>美容室</section>
+              <section className={styles.historyItem}>病院</section>
+              <section className={styles.historyItem}>会社　一次面接</section>
+              <section className={styles.historyItem}>喫茶</section>
+              <section className={styles.historyItem}>飲み会</section>
+              <section className={styles.historyItem}>打ち上げ</section>
+            </div>
+
             <label className={styles.isAlldayContainer}>
               <h3>終日</h3>
 
@@ -170,17 +187,11 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
               </div>
             )}
 
-            {/* 履歴 */}
-            <input
-              type="text"
-              value={history}
-              onChange={(e) => setHistory(e.target.value)}
-            />
-
             {/* 予定のカラー */}
             <select
               value={eventColor}
               onChange={(e) => setEventColor(e.target.value)}
+              className={styles.colorSelect}
             >
               <option value="red">赤</option>
               <option value="blue">青</option>

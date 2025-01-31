@@ -41,17 +41,34 @@
     padding: 26px 19px;
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    // gap: 36px;
     .ttlContainer {
       display: grid;
-      grid-template-columns: 1fr 16px 50px;
+      grid-template-columns: 1fr 28px 50px;
+      margin-bottom: 20px;
       .ttlWrap {
         font-size: 2em;
       }
+      input::placeholder {
+        color: $sub;
+        font-weight: bold;
+      }
+      .ttlDeleteBtn {
+        margin: auto;
+        background-color: $sub;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $base;
+      }
       .regularBtn {
         font-size: 1.4em;
+        font-weight: bold;
         color: $sub;
-        // background-color: ;
+        background-color: $bg_event;
         border: 0.5px solid $sub;
         border-radius: 4px;
         display: flex;
@@ -61,18 +78,41 @@
         // padding: 4px 12px;
       }
     }
-    .ttlWrap {
-      all: unset;
+    // .ttlWrap {
+    //   all: unset;
+    // }
+    .historyTtl {
+      color: $sub;
+      margin: 0;
+    }
+    .historyContainer {
+      // border: 1px solid black;
+      margin: 6px 0 28px 0;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      .historyItem {
+        padding: 6px 12px;
+        background-color: $bg_event;
+        box-shadow: 0 1px 2px #e6e2f3 inset;
+        color: $sub;
+        font-size: 1.2rem;
+      }
     }
 
     .isNotAlldayWContainer {
       display: flex;
       flex-direction: column;
+      margin-bottom: 28px;
+
       input {
         background-color: gray;
         font-size: 1.6em;
         color: $font_color;
       }
     }
+
+    // .colorSelect {
+    // }
   }
 }
