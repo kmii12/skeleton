@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  faMagnifyingGlass,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./header.module.scss"; // モジュール化スタイルをインポート
@@ -77,7 +76,7 @@ const Header = () => {
       </div>
       {/* 検索バーとハンバーガーメニュー */}
       <div className={styles.header__actions}>
-        <div className={styles.header__search}>
+        {/* <div className={styles.header__search}>
           <input
             type="text"
             placeholder=""
@@ -87,7 +86,7 @@ const Header = () => {
             icon={faMagnifyingGlass}
             className={styles.header__searchIcon}
           />
-        </div>
+        </div> */}
         <button className={styles.header__btn}>
           <FontAwesomeIcon icon={faBars} />
         </button>
