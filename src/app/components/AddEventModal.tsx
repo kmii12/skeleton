@@ -28,7 +28,15 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
   const [endDateTime, setEndDateTime] = useState<string | null>(null); // 終了日時
   // const [date, setDate] = useState<string | null>(null);
 
-  const [eventColor, setEventColor] = useState<string>("red"); // 予定のカラー
+  const [eventColor, setEventColor] = useState<string>(""); // 予定のカラー
+  // const colorOptions = [
+  //   { value: "work", label: "", color: "#f67fc8" },
+  //   { value: "events", label: "", color: "#45d758" },
+  //   { value: "school", label: "", color: "#a8acbd" },
+  //   { value: "jobHunting", label: "", color: "#4bccff" },
+  //   { value: "birthday", label: "", color: "#edc511" },
+  //   { value: "goOn", label: "", color: "#ff774a" },
+  // ];
   const [memo, setMemo] = useState<string>(""); // メモ
   // const [history, setHistory] = useState<string>(""); // 履歴
 
@@ -84,7 +92,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
   const modalAnimation = {
     hidden: { y: "100%", opacity: 1 },
     visible: {
-      y: -650,
+      y: -740,
       opacity: 1,
 
       transition: {
@@ -174,14 +182,18 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
                   type="datetime-local"
                   value={startDateTime || ""}
                   onChange={(e) => setStartDateTime(e.target.value)}
+                  onClick={(e) => (e.target as HTMLInputElement).showPicker()}
+                  step="1800"
                   required
                 />
-                ～
+
                 <input
                   className={styles.endDateWrap}
                   type="datetime-local"
                   value={endDateTime || ""}
                   onChange={(e) => setEndDateTime(e.target.value)}
+                  onClick={(e) => (e.target as HTMLInputElement).showPicker()}
+                  step="1800"
                   required
                 />
               </div>
@@ -212,11 +224,13 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ setShowModal }) => {
             </div>
             <div className={styles.selectContainer}>
               <h3>通知</h3>
-              <select className={styles.repeatSelect}>
-                <option value="なし" selected>
-                  なし
-                </option>
-              </select>
+              <label>
+                <select className={styles.repeatSelect}>
+                  <option value="なし" selected>
+                    なし
+                  </option>
+                </select>
+              </label>
             </div>
 
             {/* メモ */}

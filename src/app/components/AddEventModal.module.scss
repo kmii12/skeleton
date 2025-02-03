@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 90vh;
+  height: 98vh;
   button,
   input,
   label,
@@ -106,9 +106,39 @@
       margin-bottom: 28px;
 
       input {
-        background-color: gray;
         font-size: 1.6em;
+      }
+
+      input[type="datetime-local"]::-webkit-datetime-edit {
         color: $font_color;
+      }
+      input::-webkit-calendar-picker-indicator {
+        display: none;
+      }
+      input::-webkit-datetime-edit-year-field,
+      .startDateWrap::-webkit-datetime-edit-month-field,
+      .startDateWrap::-webkit-datetime-edit-day-field {
+        background-color: $base;
+        color: $font_color;
+      }
+    }
+    .colorSelect {
+      width: 100%;
+      height: 24px;
+      margin: 10px 0;
+      appearance: none; /* デフォルトのプルダウンを非表示 */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      display: flex;
+      flex-wrap: wrap; /* 選択肢をすべて表示 */
+      option {
+        font-size: 1.6rem;
+        width: 24px;
+        height: 24px;
+        background-color: $category_events;
+        display: block;
+        padding: 5px;
+        cursor: pointer;
       }
     }
 
